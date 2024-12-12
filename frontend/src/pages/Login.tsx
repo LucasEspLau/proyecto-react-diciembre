@@ -1,4 +1,5 @@
 import { FormEvent } from "react";
+import { UsuarioSesion } from "../utils/definition";
 
 export default function Login(){
 
@@ -26,7 +27,8 @@ export default function Login(){
             const data = await response.json()
             console.log(data)
             if(response.ok){
-                localStorage.setItem("datauser", JSON.stringify(data.user))
+                const userSesion= data.user as UsuarioSesion
+                localStorage.setItem("datauser", JSON.stringify(userSesion))
                 alert("Sesión iniciada correctamente")
                 window.location.href = "/" //Redireccionar a la página home cuando el login sea exitoso.
             }else{
